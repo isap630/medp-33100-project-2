@@ -155,17 +155,25 @@ const cold_button = document.querySelector(".cold-war");
 const american_button = document.querySelector(".american-civil-war")
 const covid_button = document.querySelector(".covid")
 
-world_button.addEventListener("click", function() {changeTopic('World War')});
-cold_button.addEventListener("click", function() {changeTopic('Cold War')});
-american_button.addEventListener("click", function() {changeTopic('American Civil War')});
-covid_button.addEventListener("click", function() {changeTopic('Covid')});
+world_button.addEventListener("click", function() {changeTopic('World War', world_button)});
+cold_button.addEventListener("click", function() {changeTopic('Cold War', cold_button)});
+american_button.addEventListener("click", function() {changeTopic('American Civil War', american_button)});
+covid_button.addEventListener("click", function() {changeTopic('Covid', covid_button)});
+var last_button = world_button;
 
-
-function changeTopic(newTopic){
+function changeTopic(newTopic, current_button){
   console.log("Changing topic to:", newTopic);
   offset_index = 1;
   topic = newTopic
   initializeTimeline(offset_index, topic)
+
+  last_button.style.backgroundColor = "skyblue"
+  last_button.style.color = "black"
+  last_button = current_button;
+
+  current_button.style.backgroundColor = '#2a5360'
+  current_button.style.color = 'white'
+  
 }
 
 

@@ -72,7 +72,7 @@ input {
 }
 
 .topic-buttons button:hover{
-    background-color: rgb(42, 83, 96);
+    background-color: #2a5360;
     cursor: pointer;
     color: white;
 }
