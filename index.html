@@ -10,29 +10,33 @@
   
   </head>
   <body>
-    <div class="search-wapper">
-      <label for="search"> Search Year</label>
-      <input type="search" id="search" data-search/>
+    <div class="page-header">
+      <h1 class="page-title">Historical Events</h1>
+      <div class="search-wapper">
+        <label for="search"> Search Year</label>
+        <input type="search" id="search" data-search/>
+      </div>
+      <div class="info-cards" data-info-cards-container></div>
+      <template data-info-template>
+          <div class="card">
+              <div class="header" data-header></div>
+              <div class="body" data-body></div>
+          </div>
+      </template>
     </div>
-    <div class="info-cards" data-info-cards-container></div>
-    <template data-info-template>
-        <div class="card">
-            <div class="header" data-header></div>
-            <div class="body" data-body></div>
-        </div>
-    </template>
-
-    <div class="page-buttons">
-      <button class="previous">Previous</button>
-      <button class="next">Next</button>
-    </div>
-    <div id="visualization"></div>
-  
+    
     <div class="topic-buttons">
       <button class="world-war">World War</button>
       <button class="cold-war">Cold War</button>
       <button class="american-civil-war">American Civil War</button>
-      <button class="covid">COVID-19 Pandemics</button>
+      <button class="covid">COVID-19 Pandemic</button>
+    </div>
+
+    <div id="visualization"></div>
+
+    <div class="page-buttons">
+      <button class="previous">Previous</button>
+      <button class="next">Next</button>
     </div>
 
     <script src="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>

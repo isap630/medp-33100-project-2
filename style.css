@@ -1,3 +1,10 @@
+.page-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .search-wrapper {
     display: flex;
     flex-direction: column;
@@ -36,8 +43,10 @@ input {
 
 #visualization{
     background-color: #d3f5ff ;
-    border-radius: 10px;
+    border-radius: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 50px;
+    border: none;
 }
 
 .page-buttons{

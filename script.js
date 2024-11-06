@@ -108,7 +108,7 @@ async function initializeTimeline(offset_index_i, topic_i){
   // Configuration for the Timeline
   const options = {
     width: '100%',               // Sets the width of the timeline
-    height: '600px',              // Sets the height of the timeline
+    height: '500px',              // Sets the height of the timeline
     start: '1850-01-01',          // The start date for the timeline view
     end: '2024-12-31',            // The end date for the timeline view
     zoomMin: 365 * 24 * 60 * 60 * 1000 * 5, // // Minimum zoom level: 5 years in milliseconds
