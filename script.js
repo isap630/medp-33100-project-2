@@ -51,21 +51,20 @@
 //Arlenis Code 
 
 var topic = 'World War'
-const limit = 100;
-const offset = 1;
+var offset_index = 1;
 
-async function getHistoricalEvents(offset) {
+async function getHistoricalEvents(api_offset, api_topic) {
   const params = {
-      text: topic,
+      text: api_topic,
       //year: '1945',
-      offset: offset
+      offset: api_offset
   }
 
   const searchParams = new URLSearchParams(params).toString();
   const response = await fetch('https://api.api-ninjas.com/v1/historicalevents?' + searchParams, {
       method: 'GET',
       headers: {
-          'X-Api-Key': 'bBszOPFriwwghnn231fvVQ==6lxdM7C77K9HleyR',
+          'X-Api-Key': 'LKQRH4zE4XxZrJpcXdEpjQ9Ozuz3FzrCfNY9MOOF',
       },
   });
 
@@ -79,14 +78,15 @@ return [];
 }
 
 //Add Initial API Data to Timeline
-async function initializeTimeline(){
-  const data = await getHistoricalEvents(offset);
+async function initializeTimeline(offset_index_i, topic_i){
+  const data = await getHistoricalEvents(offset_index_i, topic_i);
+  console.log("Initializing Timeline with topic:", topic_i);
 
-  // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');
+  container.innerHTML = ''; // Clear the container
 
-  // Create a DataSet (allows two way data-binding)
   const items = new vis.DataSet([]);
+  items.clear();
   var timeline_start;
 
   for (let i = 0; i < data.length; i++){
@@ -96,24 +96,23 @@ async function initializeTimeline(){
     const eventDay = apiEvent.day;
 
     const startDate = eventYear + "-" + eventMonth + "-" + eventDay;
-    console.log(startDate)
 
     items.add({
       id: i + 1,
       content: eventMonth + "/" + eventDay + "/" + eventYear + ": " + apiEvent.event,
       start: startDate
     });
-    timeline_start = startDate;
   }
 
+  // learned how to set library options and make timeline with chatgpt
   // Configuration for the Timeline
   const options = {
     width: '100%',               // Sets the width of the timeline
     height: '600px',              // Sets the height of the timeline
-    start: timeline_start,          // The start date for the timeline view
+    start: '1850-01-01',          // The start date for the timeline view
     end: '2024-12-31',            // The end date for the timeline view
     zoomMin: 365 * 24 * 60 * 60 * 1000 * 5, // // Minimum zoom level: 5 years in milliseconds
-    zoomMax: 365 * 24 * 60 * 60 * 1000 * 100,   // Maximum zoom level: 100 years in milliseconds
+    zoomMax: 365 * 24 * 60 * 60 * 1000 * 300,   // Maximum zoom level: 100 years in milliseconds
     selectable: true,             // Allow selection of items
     editable: false,              // Prevent editing of items directly on the timeline
     locale: 'en',                 // Sets the language/locale
@@ -122,18 +121,52 @@ async function initializeTimeline(){
 
   // Create a Timeline
   var timeline = new vis.Timeline(container, items, options);
+
+  console.log(offset_index_i);
+  console.log(topic_i)
 }
 
-initializeTimeline();
+initializeTimeline(offset_index, topic);
 
-const world_war_button = document.querySelector(".world-war");
-world_war_button.addEventListener("click", initializeTimeline("world war"));
+//Next page
+
+const next_button = document.querySelector(".next");
+next_button.addEventListener("click", nextPage);
+
+function nextPage(){
+  offset_index = offset_index + 1;
+  initializeTimeline(offset_index, topic)
+}
+
+//Previous page
+const previous_button = document.querySelector(".previous");
+previous_button.addEventListener("click", previousPage);
+
+function previousPage(){
+  if (offset_index >= 2){
+    offset_index = offset_index - 1;
+    initializeTimeline(offset_index, topic)
+  }
+}
+
+//Change topic
+const world_button = document.querySelector(".world-war");
+const cold_button = document.querySelector(".cold-war");
+const american_button = document.querySelector(".american-civil-war")
+const covid_button = document.querySelector(".covid")
+
+world_button.addEventListener("click", function() {changeTopic('World War')});
+cold_button.addEventListener("click", function() {changeTopic('Cold War')});
+american_button.addEventListener("click", function() {changeTopic('American Civil War')});
+covid_button.addEventListener("click", function() {changeTopic('Covid')});
 
 
+function changeTopic(newTopic){
+  console.log("Changing topic to:", newTopic);
+  offset_index = 1;
+  topic = newTopic
+  initializeTimeline(offset_index, topic)
+}
 
-//Change Topics with Topic Buttons
 
-//Next Page (change offset and call API)
-
-//Previous Page (change offset and call API)
 
