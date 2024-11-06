@@ -33,3 +33,46 @@ input {
 .hide {
     display: none;
 }
+
+#visualization{
+    background-color: #d3f5ff ;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.page-buttons{
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.page-buttons button{
+    background-color: #87eb96;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.page-buttons button:hover{
+    background-color: #589761;
+    cursor: pointer;
+}
+
+.topic-buttons{
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.topic-buttons button{
+    background-color: skyblue;
+    border: none;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.topic-buttons button:hover{
+    background-color: rgb(42, 83, 96);
+    cursor: pointer;
+    color: white;
+}
