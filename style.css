@@ -67,6 +67,24 @@ input {
     cursor: pointer;
 }
 
+.page-buttons-y{
+    margin: 15px;
+    display: none;
+    justify-content: space-around;
+}
+
+.page-buttons-y button{
+    background-color: #c187eb;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.page-buttons-y button:hover{
+    background-color: #49275f;
+    cursor: pointer;
+}
+
 .topic-buttons{
     margin: 15px;
     display: flex;

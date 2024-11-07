@@ -13,16 +13,11 @@
     <div class="page-header">
       <h1 class="page-title">Historical Events</h1>
       <div class="search-wapper">
-        <label for="search"> Search Year</label>
-        <input type="search" id="search" data-search/>
+        <label for="search">Search Year:</label>
+        <input type="search" id="searchBar" data-search/>
+        <button id="searchButton">Search</button>
       </div>
-      <div class="info-cards" data-info-cards-container></div>
-      <template data-info-template>
-          <div class="card">
-              <div class="header" data-header></div>
-              <div class="body" data-body></div>
-          </div>
-      </template>
+      
     </div>
     
     <div class="topic-buttons">
@@ -38,6 +33,12 @@
       <button class="previous">Previous</button>
       <button class="next">Next</button>
     </div>
+
+    <div class="page-buttons-y">
+      <button class="previous-y">Previous</button>
+      <button class="next-y">Next</button>
+    </div>
+
 
     <script src="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
   </body>
